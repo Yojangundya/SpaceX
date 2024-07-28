@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-parcelize")
+
 }
 
 android {
@@ -46,8 +48,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
     testImplementation(libs.junit)
-    implementation (libs.jetbrains.kotlinx.android.parcel)
+
+    implementation (libs.kotlin.stdlib)
+    implementation (libs.gson)
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.glide)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation (libs.kotlinx.serialization.json)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
