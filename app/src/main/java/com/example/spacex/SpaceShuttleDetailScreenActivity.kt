@@ -61,8 +61,6 @@ class SpaceShuttleDetailScreenActivity : AppCompatActivity() {
         }
 
         val payloads = data.rocket?.secondStage?.payloads
-        binding.llPayload
-
         if (payloads != null) {
             for (payload in payloads) {
                 val itemView = LayoutInflater.from(this)
@@ -74,8 +72,27 @@ class SpaceShuttleDetailScreenActivity : AppCompatActivity() {
                 tvPayloadId.text = payload?.payloadId
                 tvPayloadType.text = payload?.payloadType
                 tvPayloadNatioanality.text = payload?.nationality
-                tvPayloadKg.text = "${payload?.payloadMassKg} kg"
+                val weight=payload?.payloadMassKg
+                if(weight !=null){
+                    tvPayloadKg.visibility=View.VISIBLE
+                    tvPayloadKg.text = "${payload?.payloadMassKg} kg"
+                }else{
+                    tvPayloadKg.visibility=View.GONE
+                }
+
                 binding.llPayload.addView(itemView)
+            }
+        }
+        val firstStage=data.rocket?.firstStage?.cores
+        if (firstStage != null) {
+            for (first in firstStage) {
+                val itemView = LayoutInflater.from(this)
+                    .inflate(R.layout.first_stage_item, binding.llFirstStage, false)
+                val tvflight = itemView.findViewById<TextView>(R.id.tvFlight)
+                val tvcs = itemView.findViewById<TextView>(R.id.tvCs)
+                tvflight.text=first?.flight.toString()
+                tvcs.text=first?.coreSerial
+                binding.llFirstStage.addView(itemView)
             }
         }
 
